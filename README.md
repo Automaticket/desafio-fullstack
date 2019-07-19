@@ -17,6 +17,7 @@ Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários*
 - Nós utilizamos Laravel, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
 - Crie uma API REST para o CRUD de usuários, fazendo uso das boas práticas.
 - As requisições do CRUD de usuários na API deverão ser autenticadas.
+- Utilize MySQL para a persistência dos dados dos usuários cadastrados.
 - Pedimos que crie o Dockerfile do seu projeto e se possível docker-compose.yml.
 
 Bom desafio 😎
