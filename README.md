@@ -13,7 +13,7 @@ O usuário deverá ter informações de dados pessoais básicos, endereço e par
 - Nós utilizamos Vue.js e React.js, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
 - A página de listagem de usuários deverá ser paginada e ordenada por data de alteração.
 - Se as informações de algum usuário forem alteradas, a página de listagem deverá ser atualizada sem a necessidade do recarregamento da página.
-- No formulário, o campo `Cep` deve conter integração com a API da [ViaCEP](https://viacep.com.br/) para preenchimento automático dos campos de endereço.  
+- No formulário, o campo `Cep` deve ser integrado com a API da [ViaCEP](https://viacep.com.br/) para preenchimento automático dos campos de endereço.  
 
 ## Back-end
 - Nós utilizamos Laravel, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
