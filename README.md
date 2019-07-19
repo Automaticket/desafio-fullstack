@@ -6,7 +6,7 @@ O objetivo deste desafio é avaliar o domínio do candidato no desenvolvimento f
 - Não esqueça de nos ensinar como rodar o seu desafio. Utilize o arquivo HOWTORUN.md para as instruções.
 
 O desafio consiste em um CRUD de usuários.<br>
-Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários** e outra com **formulário de cadastro/edição dos usuário**.
+Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários** e outra com **formulário de cadastro/edição**.
 
 ## Front-end
 - Nós utilizamos Vue.js e React.js, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
