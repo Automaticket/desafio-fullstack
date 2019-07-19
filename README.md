@@ -6,12 +6,14 @@ O objetivo deste desafio é avaliar o domínio do candidato no desenvolvimento f
 - Não esqueça de nos ensinar como rodar o seu desafio. Utilize o arquivo HOWTORUN.md para as instruções.
 
 O desafio consiste em um CRUD de usuários.<br>
-Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários** e outra com **formulário de cadastro/edição**.
+Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários** e outra com **formulário de cadastro/edição**.<br>
+O usuário deverá ter informações de dados pessoais básicos, endereço e parentesco, onde os *dados pessoais* e *endereço* são obrigatórios.
 
 ## Front-end
 - Nós utilizamos Vue.js e React.js, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
 - A página de listagem de usuários deverá ser paginada e ordenada por data de alteração.
 - Se as informações de algum usuário forem alteradas, a página de listagem deverá ser atualizada sem a necessidade do recarregamento da página.
+- No formulário, o campo `Cep` deve conter integração com a API da [ViaCEP](https://viacep.com.br/) para preenchimento automático dos campos de endereço.  
 
 ## Back-end
 - Nós utilizamos Laravel, mas fique a vontade para utilizar o que você achar a melhor solução para o desafio.
