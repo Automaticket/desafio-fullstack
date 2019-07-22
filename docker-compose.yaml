@@ -5,26 +5,16 @@ services:
     build: ./.docker/app
     container_name: php
     volumes:
-      - ./backend:/app
+      - ./:/app
     networks:
       - default-network
-  backend:
+  nginx:
     image: nginx:alpine
-    container_name: backend
+    container_name: nginx
     ports:
       - 8000:80
     volumes:
-      - ./backend:/app
-      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
-    networks:
-      - default-network
-  frontend:
-    image: nginx:alpine
-    container_name: frontend
-    ports:
-      - 3000:80
-    volumes:
-      - ./frontend/dist:/app
+      - ./:/app
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     networks:
       - default-network
