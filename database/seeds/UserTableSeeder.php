@@ -15,5 +15,7 @@ class UserTableSeeder extends Seeder
         Factory(\App\Entities\User::class,1)->create([
             'email' => 'admin@user.com.br'
         ]);
+
+        Factory(\App\Entities\User::class,50)->create();
     }
 }
