@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Http\Resources\UsersResource;
 use App\Models\Address;
 use App\Models\User;
@@ -24,7 +25,7 @@ class UsersController extends Controller
         return response(new UsersResource(User::findOrFail($id)));
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = [
             'name'              => $request->name,
@@ -53,7 +54,7 @@ class UsersController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         
