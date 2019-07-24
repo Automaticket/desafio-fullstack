@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="birth_date">Data de nascimento</label>
-                    <input type="text" name="birth_date" class="form-control"
+                    <input type="date" name="birth_date" class="form-control"
                     v-model="form.birth_date" :class="{ 'is-invalid': errors.birth_date }">
                     <div v-if="errors.birth_date" class="invalid-feedback">
                         {{ errors.birth_date[0] }}
@@ -66,26 +66,70 @@
 
                 <legend>Endereço</legend>
 
-                <div class="form-group">
-                    <label for="cep">CEP</label>
-                    <input type="text" name="cep" class="form-control"
-                        v-model="form.address.cep">
-                </div>
-
-                <!-- <div class="form-group">
-                    <label for="">Logradouro</label>
-                    <input type="text" name="logradouro" class="form-control"
-                    v-model="form.logradouro">
-                </div>
-
-                <div class="form-group">
-                    <label for="">Número</label>
-                    <input type="text" name="numero" class="form-control"
-                    v-model="form.numero" :class="{ 'is-invalid': errors.numero }">
-                    <div v-if="errors.numero" class="invalid-feedback">
-                    {{ errors.numero[0] }}
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" name="cep" class="form-control"
+                            v-model="form.cep" @keyup="search">
                     </div>
-                </div> -->
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9 form-group">
+                        <label for="">Logradouro</label>
+                        <input type="text" name="logradouro" class="form-control"
+                        v-model="form.logradouro">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="number">Número</label>
+                        <input type="text" name="number" id="number" class="form-control"
+                        v-model="form.number" :class="{ 'is-invalid': errors.number }">
+                        <div v-if="errors.number" class="invalid-feedback">
+                        {{ errors.number[0] }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="complement">Complemento</label>
+                        <input type="text" name="complement" class="form-control"
+                            v-model="form.complement">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="">Bairro</label>
+                        <input type="text" name="neighborhood" class="form-control"
+                            v-model="form.neighborhood"
+                            :class="{ 'is-invalid': errors.neighborhood }">
+                        <div v-if="errors.neighborhood" class="invalid-feedback">
+                            {{ errors.neighborhood[0] }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="city">Cidade</label>
+                        <input type="text" name="city" class="form-control"
+                            v-model="form.city"
+                            :class="{ 'is-invalid': errors.city }">
+                        <div v-if="errors.city" class="invalid-feedback">
+                            {{ errors.city[0] }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="state">Estado</label>
+                        <input type="text" name="state" class="form-control"
+                            v-model="form.state"
+                            :class="{ 'is-invalid': errors.state }">
+                        <div v-if="errors.state" class="invalid-feedback">
+                            {{ errors.state[0] }}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="text-right">
                     <button type="submit" class="btn btn-success">Salvar</button>
@@ -97,6 +141,7 @@
 
 <script>
     import api from '@/services/api';
+    import cep from '@/services/cep';
 
     export default {
         data() {
@@ -109,9 +154,15 @@
                     sex: null,
                     birth_date: null,
                     cell_phone: null,
-                    address: {
-                        cep: null,
-                    },
+                    father_name: null,
+                    mother_name: null,
+                    cep: null,
+                    logradouro: null,
+                    number: null,
+                    complement: null,
+                    neighborhood: null,
+                    city: null,
+                    state: null
                 }
             }
         },
@@ -126,14 +177,33 @@
             async fetchUser() {
                 const { data } = await api.get(`user/${this.$route.params.id}`,
                     { 'headers': { 'Authorization': `Bearer ${this.token}` } });
-                this.form.id = data.id;
-                this.form.name = data.name;
-                this.form.email = data.email;
-                this.form.sex = data.sex;
-                this.form.birth_date = data.birth_date;
-                this.form.cell_phone = data.cell_phone;
-                this.form.father_name = data.father_name;
-                this.form.mother_name = data.mother_name;
+                this.form.id           = data.id;
+                this.form.name         = data.name;
+                this.form.email        = data.email;
+                this.form.sex          = data.sex;
+                this.form.birth_date   = data.birth_date;
+                this.form.cell_phone   = data.cell_phone;
+                this.form.father_name  = data.father_name;
+                this.form.mother_name  = data.mother_name;
+                this.form.cep          = data.cep;
+                this.form.logradouro   = data.logradouro;
+                this.form.number       = data.number;
+                this.form.complement   = data.complement;
+                this.form.neighborhood = data.neighborhood;
+                this.form.city         = data.city;
+                this.form.state        = data.state;
+            },
+
+            search() {
+                if (/^[0-9]{8}$/.test(this.form.cep)) {
+                    cep.get(`${this.form.cep}/json/`)
+                        .then((res) => {
+                            this.form.logradouro = res.data.logradouro;
+                            this.form.neighborhood = res.data.bairro;
+                            this.form.city = res.data.localidade;
+                            this.form.state = res.data.uf;
+                        })
+                }
             },
 
             save(event) {
