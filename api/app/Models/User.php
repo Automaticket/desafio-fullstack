@@ -17,7 +17,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'sex',
+        'birth_date',
+        'cell_phone',
+        'father_name',
+        'mother_name',
     ];
 
     /**
@@ -40,6 +47,6 @@ class User extends Authenticatable
 
     public function address()
     {
-        return $this->hasOne(Address::class, 'id', 'address_id');
+        return $this->hasOne(Address::class);
     }
 }

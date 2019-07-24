@@ -10,6 +10,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('cep');
             $table->string('logradouro');
             $table->string('number', 10);
@@ -18,6 +19,11 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('state', 2);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
     
