@@ -70,7 +70,7 @@
                     <div class="col-md-4 form-group">
                         <label for="cep">CEP</label>
                         <input type="text" name="cep" class="form-control"
-                            v-model="form.cep" @keyup="search">
+                            v-model="form.address.cep" @keyup="search">
                     </div>
                 </div>
 
@@ -78,13 +78,13 @@
                     <div class="col-md-9 form-group">
                         <label for="">Logradouro</label>
                         <input type="text" name="logradouro" class="form-control"
-                        v-model="form.logradouro">
+                        v-model="form.address.logradouro">
                     </div>
 
                     <div class="col-md-3 form-group">
                         <label for="number">Número</label>
                         <input type="text" name="number" id="number" class="form-control"
-                        v-model="form.number" :class="{ 'is-invalid': errors.number }">
+                        v-model="form.address.number" :class="{ 'is-invalid': errors.number }">
                         <div v-if="errors.number" class="invalid-feedback">
                         {{ errors.number[0] }}
                         </div>
@@ -95,13 +95,13 @@
                     <div class="col-md-6 form-group">
                         <label for="complement">Complemento</label>
                         <input type="text" name="complement" class="form-control"
-                            v-model="form.complement">
+                            v-model="form.address.complement">
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label for="">Bairro</label>
                         <input type="text" name="neighborhood" class="form-control"
-                            v-model="form.neighborhood"
+                            v-model="form.address.neighborhood"
                             :class="{ 'is-invalid': errors.neighborhood }">
                         <div v-if="errors.neighborhood" class="invalid-feedback">
                             {{ errors.neighborhood[0] }}
@@ -113,7 +113,7 @@
                     <div class="col-md-6 form-group">
                         <label for="city">Cidade</label>
                         <input type="text" name="city" class="form-control"
-                            v-model="form.city"
+                            v-model="form.address.city"
                             :class="{ 'is-invalid': errors.city }">
                         <div v-if="errors.city" class="invalid-feedback">
                             {{ errors.city[0] }}
@@ -123,7 +123,7 @@
                     <div class="col-md-6 form-group">
                         <label for="state">Estado</label>
                         <input type="text" name="state" class="form-control"
-                            v-model="form.state"
+                            v-model="form.address.state"
                             :class="{ 'is-invalid': errors.state }">
                         <div v-if="errors.state" class="invalid-feedback">
                             {{ errors.state[0] }}
@@ -156,13 +156,15 @@
                     cell_phone: null,
                     father_name: null,
                     mother_name: null,
-                    cep: null,
-                    logradouro: null,
-                    number: null,
-                    complement: null,
-                    neighborhood: null,
-                    city: null,
-                    state: null
+                    address: {
+                        cep: null,
+                        logradouro: null,
+                        number: null,
+                        complement: null,
+                        neighborhood: null,
+                        city: null,
+                        state: null
+                    }
                 }
             }
         },
@@ -185,23 +187,18 @@
                 this.form.cell_phone   = data.cell_phone;
                 this.form.father_name  = data.father_name;
                 this.form.mother_name  = data.mother_name;
-                this.form.cep          = data.cep;
-                this.form.logradouro   = data.logradouro;
-                this.form.number       = data.number;
-                this.form.complement   = data.complement;
-                this.form.neighborhood = data.neighborhood;
-                this.form.city         = data.city;
-                this.form.state        = data.state;
+                this.form.address      = data.address;
+
             },
 
             search() {
-                if (/^[0-9]{8}$/.test(this.form.cep)) {
-                    cep.get(`${this.form.cep}/json/`)
+                if (/^[0-9]{8}$/.test(this.form.address.cep)) {
+                    cep.get(`${this.form.address.cep}/json/`)
                         .then((res) => {
-                            this.form.logradouro = res.data.logradouro;
-                            this.form.neighborhood = res.data.bairro;
-                            this.form.city = res.data.localidade;
-                            this.form.state = res.data.uf;
+                            this.form.address.logradouro = res.data.logradouro;
+                            this.form.address.neighborhood = res.data.bairro;
+                            this.form.address.city = res.data.localidade;
+                            this.form.address.state = res.data.uf;
                         })
                 }
             },
