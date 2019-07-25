@@ -7,48 +7,49 @@
                 <div class="form-group">
                     <label for="name">Nome</label>
                     <input type="text" name="name" class="form-control"
-                    v-model="form.name" :class="{ 'is-invalid': errors.name }">
-                    <div v-if="errors.name" class="invalid-feedback">
-                        {{ errors.name[0] }}
+                    v-model="form.name" :class="{ 'is-invalid': errors.has('name') }">
+                    <div v-if="errors.has('name')" class="invalid-feedback">
+                        {{ errors.get('name') }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">E-mail</label>
                     <input type="text" name="email" class="form-control"
-                    v-model="form.email" :class="{ 'is-invalid': errors.email }">
-                    <div v-if="errors.email" class="invalid-feedback">
-                        {{ errors.email[0] }}
+                    v-model="form.email" :class="{ 'is-invalid': errors.has('email') }">
+                    <div v-if="errors.has('email')" class="invalid-feedback">
+                        {{ errors.get('email') }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="cell_phone">Celular</label>
                     <input type="text" name="email" class="form-control"
-                    v-model="form.cell_phone" :class="{ 'is-invalid': errors.cell_phone }">
-                    <div v-if="errors.cell_phone" class="invalid-feedback">
-                        {{ errors.cell_phone[0] }}
+                    v-model="form.cell_phone" :class="{ 'is-invalid': errors.has('cell_phone') }">
+                    <div v-if="errors.has('cell_phone')" class="invalid-feedback">
+                        {{ errors.get('cell_phone') }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="birth_date">Data de nascimento</label>
                     <input type="date" name="birth_date" class="form-control"
-                    v-model="form.birth_date" :class="{ 'is-invalid': errors.birth_date }">
-                    <div v-if="errors.birth_date" class="invalid-feedback">
-                        {{ errors.birth_date[0] }}
+                    v-model="form.birth_date" :class="{ 'is-invalid': errors.has('birth_date') }">
+                    <div v-if="errors.has('birth_date')" class="invalid-feedback">
+                        {{ errors.get('birth_date') }}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="">Selecione o sexo</label>
                     <select name="sexo" class="form-control"
-                        v-model="form.sex" :class="{ 'is-invalid': errors.sex }">
+                        v-model="form.sex" :class="{ 'is-invalid': errors.has('sex') }">
+                        <option value="">Selecione...</option>
                         <option value="m">Masculino</option>
                         <option value="f">Feminino</option>
                     </select>
-                    <div v-if="errors.sex" class="invalid-feedback">
-                        {{ errors.sex[0] }}
+                    <div v-if="errors.has('sex')" class="invalid-feedback">
+                        {{ errors.get('sex') }}
                     </div>
                 </div>
 
@@ -70,7 +71,11 @@
                     <div class="col-md-4 form-group">
                         <label for="cep">CEP</label>
                         <input type="text" name="cep" class="form-control"
+                            :class="{ 'is-invalid': errors.has('address.cep') }"
                             v-model="form.address.cep" @keyup="search">
+                        <div v-if="errors.has('address.cep')" class="invalid-feedback">
+                            {{ errors.get('address.cep') }}
+                        </div>
                     </div>
                 </div>
 
@@ -78,15 +83,21 @@
                     <div class="col-md-9 form-group">
                         <label for="">Logradouro</label>
                         <input type="text" name="logradouro" class="form-control"
-                        v-model="form.address.logradouro">
+                            :class="{ 'is-invalid': errors.has('address.logradouro') }"
+                            v-model="form.address.logradouro">
+                        <div v-if="errors.has('address.logradouro')" class="invalid-feedback">
+                            {{ errors.get('address.logradouro') }}
+                        </div>
                     </div>
 
                     <div class="col-md-3 form-group">
                         <label for="number">Número</label>
-                        <input type="text" name="number" id="number" class="form-control"
-                        v-model="form.address.number" :class="{ 'is-invalid': errors.number }">
-                        <div v-if="errors.number" class="invalid-feedback">
-                        {{ errors.number[0] }}
+                        <input type="text" name="number" id="number"
+                            class="form-control"
+                            :class="{ 'is-invalid': errors.has('address.number') }"
+                            v-model="form.address.number">
+                        <div v-if="errors.has('address.number')" class="invalid-feedback">
+                            {{ errors.get('address.number') }}
                         </div>
                     </div>
                 </div>
@@ -101,10 +112,10 @@
                     <div class="col-md-6 form-group">
                         <label for="">Bairro</label>
                         <input type="text" name="neighborhood" class="form-control"
-                            v-model="form.address.neighborhood"
-                            :class="{ 'is-invalid': errors.neighborhood }">
-                        <div v-if="errors.neighborhood" class="invalid-feedback">
-                            {{ errors.neighborhood[0] }}
+                            :class="{ 'is-invalid': errors.has('address.neighborhood') }"
+                            v-model="form.address.neighborhood">
+                        <div v-if="errors.has('address.neighborhood')" class="invalid-feedback">
+                            {{ errors.get('address.neighborhood') }}
                         </div>
                     </div>
                 </div>
@@ -113,20 +124,20 @@
                     <div class="col-md-6 form-group">
                         <label for="city">Cidade</label>
                         <input type="text" name="city" class="form-control"
-                            v-model="form.address.city"
-                            :class="{ 'is-invalid': errors.city }">
-                        <div v-if="errors.city" class="invalid-feedback">
-                            {{ errors.city[0] }}
+                            :class="{ 'is-invalid': errors.has('address.city') }"
+                            v-model="form.address.city">
+                        <div v-if="errors.has('address.city')" class="invalid-feedback">
+                            {{ errors.get('address.city') }}
                         </div>
                     </div>
 
                     <div class="col-md-6 form-group">
                         <label for="state">Estado</label>
                         <input type="text" name="state" class="form-control"
-                            v-model="form.address.state"
-                            :class="{ 'is-invalid': errors.state }">
-                        <div v-if="errors.state" class="invalid-feedback">
-                            {{ errors.state[0] }}
+                            :class="{ 'is-invalid': errors.has('address.state') }"
+                            v-model="form.address.state">
+                        <div v-if="errors.has('address.state')" class="invalid-feedback">
+                            {{ errors.get('address.state') }}
                         </div>
                     </div>
                 </div>
@@ -143,11 +154,39 @@
     import api from '@/services/api';
     import cep from '@/services/cep';
 
+    class Errors {
+        constructor() {
+            this.errors = {};
+        }
+
+        has(field) {
+            return this.errors.hasOwnProperty(field);
+        }
+
+        any() {
+            return Object.Keys(this.errors).length > 0;
+        }
+
+        get(field) {
+            if (this.errors[field]) {
+                return this.errors[field][0];
+            }
+        }
+
+        record(errors) {
+            this.errors = errors;
+        }
+
+        clear(field) {
+            delete this.errors[field];
+        }
+    }
+
     export default {
         data() {
             return {
                 token: JSON.parse(window.localStorage.getItem('authUser')),
-                errors: {},
+                errors: new Errors,
                 form: {
                     name: null,
                     email: null,
@@ -221,13 +260,13 @@
                     //     swal("Successo!", "Registro adicionado!", "success")
                     // .then((success) => {
                     //     if (success) {
-                    //         this.$router.push('/')
+                            this.$router.push({name: 'user-index'});
                     //     }
                     // })
                 })
                 .catch(error => {
                     if (error.response.status == 422) {
-                        this.errors = error.response.data.errors
+                        this.errors.record(error.response.data.errors);
                     }
                 })
             },
@@ -239,13 +278,13 @@
                         // swal("Successo!", "Registro atualizado!", "success")
                         // .then((success) => {
                         //     if (success) {
-                        //     this.$router.push('/')
+                            this.$router.push({name: 'user-index'});
                         //     }
                         // })
                     })
                     .catch(error => {
                         if (error.response.status == 422) {
-                            this.errors = error.response.data.errors
+                            this.errors.record(error.response.data.errors);
                         }
                     })
             },

@@ -8,6 +8,27 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  const authUser = JSON.parse(window.localStorage.getItem('authUser'));
+
+  if (to.meta.requiresAuth) {
+
+    if (authUser) {
+      next();
+      return;
+    }
+
+    next({ name: 'login' });
+  }
+
+  if (authUser && to.name === 'login') {
+    next({ name: 'main' });
+    return;
+  }
+
+  next();
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
