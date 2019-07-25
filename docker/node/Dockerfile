@@ -1,0 +1,5 @@
+FROM node
+
+WORKDIR /usr/app
+
+EXPOSE 8080
