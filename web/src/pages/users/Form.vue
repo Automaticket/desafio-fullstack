@@ -257,12 +257,12 @@
                 api.post('users', this.form,
                     { 'headers': { 'Authorization': `Bearer ${this.token}` } })
                     .then(() => {
-                    //     swal("Successo!", "Registro adicionado!", "success")
-                    // .then((success) => {
-                    //     if (success) {
-                            this.$router.push({name: 'user-index'});
-                    //     }
-                    // })
+                    swal("Successo!", "Registro adicionado!", "success")
+                        .then((success) => {
+                            if (success) {
+                                this.$router.push({name: 'user-index'});
+                            }
+                        })
                 })
                 .catch(error => {
                     if (error.response.status == 422) {
@@ -275,12 +275,12 @@
                 api.put(`users/${this.form.id}`, this.form, 
                     { 'headers': { 'Authorization': `Bearer ${this.token}` } })
                     .then(() => {
-                        // swal("Successo!", "Registro atualizado!", "success")
-                        // .then((success) => {
-                        //     if (success) {
-                            this.$router.push({name: 'user-index'});
-                        //     }
-                        // })
+                        swal("Successo!", "Registro atualizado!", "success")
+                            .then((success) => {
+                                if (success) {
+                                this.$router.push({name: 'user-index'});
+                                }
+                            })
                     })
                     .catch(error => {
                         if (error.response.status == 422) {

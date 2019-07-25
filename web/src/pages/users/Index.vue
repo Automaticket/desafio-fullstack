@@ -80,28 +80,28 @@
             },
 
             confirmDelete(user) {
-                console.log(user);
-                // swal({
-                //     title: "Você tem certeza?",
-                //     text: "Uma vez deletado, você não poderá recuperar este registro!",
-                //     icon: "warning",
-                //     buttons: true,
-                //     dangerMode: true,
-                // })
-                // .then((willDelete) => {
-                //     if (willDelete) {
-                //         this.delete(pessoa)
-                //     }
-                // })
+                swal({
+                    title: "Você tem certeza?",
+                    text: "Uma vez deletado, você não poderá recuperar este registro!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        this.delete(user)
+                    }
+                })
             },
 
             async delete(user) {
-                await api.delete(`users/${user.id}`)
-                    .then(response => {
-                //         this.pessoas.splice(this.pessoas.indexOf(pessoa.id), 1);
-                //         swal("Registro excluído", {
-                //         icon: "success",
-                //     });
+                await api.delete(`users/${user.id}`,
+                    { 'headers': { 'Authorization': `Bearer ${this.token}` } } )
+                    .then(() => {
+                        swal("Registro excluído!", {
+                            icon: "success",
+                        });
+                        this.fetchUsers();
                 })
             }
         }
