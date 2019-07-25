@@ -1,5 +1,5 @@
 # How to run
-Para executar o projeto você irá precisar ter ter o docker instalado em sua maquina.
+Para executar o projeto você irá precisar ter o docker instalado em sua maquina.
 
 Com o docker instalado, va até a raiz do prejeto, acesse a pasta **docker** e rode o seguinte comando:
 
@@ -11,9 +11,9 @@ Após finalizar a execução do camando anterior, execute o comando:
 
 Após finalizar a execução do camando, a api deverá estar pronta.
 
-**Obs:** eu não tenho muita habilidade com docker ainda, e não sei por qual razão meu containar para rodar a aplicação web não funcionou, então para conseguir executar a mesma, suguro seguir o seguinte procedimento:
+**Obs:** eu não tenho muita habilidade com docker ainda, e não sei por qual razão meu containar para rodar a aplicação web não funcionou, sugiro seguir o seguinte procedimento:
 
-Para esta etapa, será preciso ter instalado em sua máquina o node e o npm.
+Para esta etapa, será preciso ter instalado em sua máquina o **node** e o **npm**.
 
 Com a máquina preparada, acesse a pasta **web**, e rode ```npm install``` e depois ```npm run dev```.
 
