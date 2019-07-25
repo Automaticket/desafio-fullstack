@@ -1,10 +1,12 @@
 <template>
     <div>
-        <h2>Adicionar</h2>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Adicionar</h2>
 
-        <router-link to="/" class="btn btn-dark mb-3">
-            Voltar
-        </router-link>
+            <router-link to="/" class="btn btn-dark mb-3">
+                Voltar
+            </router-link>
+        </div>
 
         <div class="card">
              <div class="card-body">
