@@ -3,6 +3,16 @@
         <form class="login" @submit.prevent="login">
             <div class="row">
                 <div class="col-md-8 offset-md-2">
+                    <div class="ml-5">
+                        <p class="mb-0">
+                            <strong>Email:</strong>
+                            admin@email.com
+                        </p>
+                        <p>
+                            <strong>Senha:</strong>
+                            password
+                        </p>
+                    </div>
                     <div class="card p-5 m-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Sign in</h5>
