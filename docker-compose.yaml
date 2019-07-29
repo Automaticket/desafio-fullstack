@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  php:
+    build: ./.docker/app
+    container_name: php
+    volumes:
+      - ./:/app
+    networks:
+      - default-network
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/app
+      - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - default-network
+  mysql:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: mysql
+    tty: true
+    volumes:
+      - "./db-data:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=homestead
+      - MYSQL_USER=homestead
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=secret
+    networks:
+      - default-network
+networks:
+  default-network:
+    driver: bridge
