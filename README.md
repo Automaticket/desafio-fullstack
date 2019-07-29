@@ -4,6 +4,7 @@ O objetivo deste desafio é avaliar o domínio do candidato no desenvolvimento f
 ## Instruções gerais
 - Faça um fork deste repositório para realizar o desafio.
 - Não esqueça de nos ensinar como rodar o seu desafio. Utilize o arquivo HOWTORUN.md para as instruções.
+- Após o término do desafio, envie um e-mail para [rh@crmall.com.br](mailto:rh@crmall.com.br) com o assunto *Desafio Fullstack Automaticket - {Seu nome}* e o link do repositório forkado.
 
 O desafio consiste em um CRUD de usuários.<br>
 Esperamos que o projeto tenha duas páginas. Uma para a **listagem de usuários** e outra com **formulário de cadastro/edição**.<br>
@@ -20,6 +21,6 @@ O usuário deverá ter informações de dados pessoais básicos, endereço e par
 - Crie uma API REST para o CRUD de usuários, fazendo uso das boas práticas.
 - As requisições do CRUD de usuários na API deverão ser autenticadas.
 - Utilize MySQL para a persistência dos dados dos usuários cadastrados.
-- Pedimos que crie o Dockerfile do seu projeto e se possível docker-compose.yml.
+- Pedimos que crie o Dockerfile e docker-compose.yml do projeto.
 
 Bom desafio 😎
